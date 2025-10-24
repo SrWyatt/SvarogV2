@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import psutil
 import requests
 import datetime
@@ -52,7 +51,7 @@ def get_network_info():
     # Interfaces
     interfaces = []
     default_iface = None
-    # Intento determinar la interfaz por defecto usando la conexión a google
+    # Interfaz por defecto 
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
@@ -125,7 +124,7 @@ def create_dashboard():
         f"[bold blue]TX:[/bold blue] {net_info['TX']} | [bold blue]RX:[/bold blue] {net_info['RX']}\n\n"
         f"[bold white]Interfaces:[/bold white]\n" +
         "\n".join([f"{m} {iface} {ip} ({mac})" for m, iface, ip, mac in net_info['Interfaces']]),
-        title="📊 Información del Sistema",
+        title="Información del Sistema",
         border_style="bright_blue"
     )
 
@@ -133,7 +132,7 @@ def create_dashboard():
     proc_table = get_process_table()
 
     layout["header"].update(
-        Panel(Text("⚙️  SVAROG v2 - MONITOR DEL SISTEMA", justify="center", style="bold white on blue"))
+        Panel(Text("SVAROG v2 - MONITOR DEL SISTEMA", justify="center", style="bold white on blue"))
     )
     layout["system"].update(sys_panel)
     layout["processes"].update(proc_table)
